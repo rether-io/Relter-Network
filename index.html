@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relter Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;1,8..60,200;1,8..60,300&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0a07;--bg2:#0f0d0a;--sur:#161310;--bor:#222018;
+  --gr:#8d9d4f;--gr2:#9db18c;--cr:#f0e8d8;--mu:#6b6358;--mu2:#9a9088;
+}
+html,body{background:var(--bg);color:var(--cr);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:clip}
+/* overflow-x:clip ≠ overflow-x:hidden — não cria scroll container, position:sticky funciona */
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 5%}
+.logo{font-family:'Source Serif 4',serif;font-size:1.1rem;font-weight:300;letter-spacing:.18em;color:var(--cr);text-transform:uppercase}
+.logo b{font-weight:300;color:var(--gr)}
+.nav-btn{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gr);text-decoration:none;border:1px solid rgba(141,157,79,.35);padding:.5rem 1.2rem;border-radius:2px;transition:background .2s,color .2s}
+.nav-btn:hover{background:var(--gr);color:var(--bg)}
+
+/* ── 1. HERO ── */
+.hero-wrap{height:280vh;position:relative}
+.hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.h-bg{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Source Serif 4',serif;
+  font-size:clamp(7rem,20vw,20rem);font-weight:200;letter-spacing:.08em;
+  color:rgba(141,157,79,.05);white-space:nowrap;user-select:none;
+  animation:hfade .8s .1s ease both;
+}
+.h-l1{
+  position:absolute;top:36%;left:50%;transform:translateX(-50%);
+  font-family:'Source Serif 4',serif;
+  font-size:clamp(3rem,8.5vw,8.5rem);font-weight:200;color:var(--cr);
+  white-space:nowrap;line-height:1;text-align:center;
+  animation:hfade 1s .2s ease both;
+}
+.h-l2{
+  position:absolute;top:52%;left:50%;transform:translateX(-50%);
+  font-family:'Source Serif 4',serif;
+  font-size:clamp(3rem,8.5vw,8.5rem);font-weight:200;font-style:italic;color:var(--gr);
+  white-space:nowrap;line-height:1;text-align:center;
+  animation:hfade 1s .35s ease both;
+}
+.h-l3{
+  position:absolute;top:68%;left:50%;transform:translateX(-50%);
+  font-size:clamp(.78rem,1.5vw,1rem);font-weight:300;color:var(--mu2);
+  letter-spacing:.05em;white-space:nowrap;text-align:center;
+  animation:hfade 1s .5s ease both;
+}
+@keyframes hfade{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none;z-index:10}
+.scroll-hint{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:20;animation:hfade 1s .8s ease both}
+.s-line{width:1px;height:46px;background:linear-gradient(to bottom,var(--gr),transparent);animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.2}50%{opacity:.9}}
+.s-lbl{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+
+/* ── 2. PROBLEM ── */
+.prob-wrap{height:480vh;position:relative}
+.prob-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.prob-inner{max-width:880px;width:88%}
+.pl{
+  display:block;
+  font-family:'Source Serif 4',serif;font-size:clamp(1.9rem,5vw,4.6rem);
+  font-weight:200;line-height:1.12;color:var(--cr);
+  opacity:0;transform:translateY(24px);
+}
+.pl.it{font-style:italic;color:var(--gr)}
+.prob-scr1 .pl.it{font-size:clamp(2.4rem,6.5vw,6.2rem)}
+.pb-big{font-size:clamp(2.6rem,7vw,6.8rem)!important}
+.pl.sm{font-family:'DM Sans',sans-serif;font-size:clamp(.82rem,1.4vw,1.05rem);font-weight:300;color:var(--mu2);margin-top:1.5rem}
+
+/* ── 3. PIVOT ── */
+.pivot-wrap{height:200vh;position:relative;background:var(--bg2)}
+.pivot-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pivot-inner{max-width:820px;width:88%;text-align:center}
+.pv{display:block;font-family:'Source Serif 4',serif;font-size:clamp(1.8rem,4.5vw,4.2rem);font-weight:200;line-height:1.2;color:var(--cr);opacity:0;transform:translateY(18px)}
+.pv.ac{color:var(--gr);font-style:italic}
+
+/* ── 4. SYSTEM ── */
+.sys-wrap{height:520vh;position:relative;background:var(--bg)}
+.sys-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+
+.sys-left{padding:0 4% 0 8%;position:relative}
+.sys-step{position:absolute;top:50%;transform:translateY(-50%);opacity:0;width:90%;will-change:opacity,transform}
+.sys-step.first{opacity:1}
+.st-eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);margin-bottom:.5rem;display:block}
+.st-num{font-family:'Source Serif 4',serif;font-size:clamp(3.5rem,6vw,6rem);font-weight:200;color:rgba(141,157,79,.1);line-height:1;margin-bottom:.5rem}
+.st-title{font-family:'Source Serif 4',serif;font-size:clamp(1.4rem,2.2vw,2rem);font-weight:200;color:var(--cr);line-height:1.2;margin-bottom:.75rem}
+.st-desc{font-size:.85rem;color:var(--mu2);line-height:1.7;max-width:340px}
+
+.sys-right{display:flex;align-items:center;justify-content:center;padding:0 8% 0 4%}
+
+.phone-outer{
+  width:clamp(200px,22vw,280px);
+  background:#1a1814;border-radius:44px 44px 0 0;padding:10px;position:relative;
+  box-shadow:
+    0 0 0 1px #2a2820,0 0 0 2px #141210,
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    24px 24px 80px rgba(0,0,0,.8),-4px -4px 20px rgba(255,255,255,.02);
+}
+.phone-outer::before{content:'';position:absolute;left:-3px;top:90px;width:3px;height:32px;background:#222;border-radius:2px 0 0 2px;box-shadow:0 40px 0 #222,0 72px 0 #222}
+.phone-outer::after{content:'';position:absolute;right:-3px;top:110px;width:3px;height:46px;background:#222;border-radius:0 2px 2px 0}
+.phone-inner{background:#000;border-radius:36px 36px 0 0;overflow:hidden;position:relative}
+.phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#000;border-radius:13px;z-index:10;box-shadow:0 0 0 2px #1a1814}
+.phone-status{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1.1rem 0;font-size:.62rem;font-weight:500;color:var(--cr);position:relative;z-index:5;margin-top:10px}
+.phone-time{font-size:.72rem;font-weight:600}
+.phone-icons{display:flex;gap:.3rem;align-items:center}
+
+.phone-screen{height:clamp(380px,44vw,540px);overflow:hidden;position:relative}
+.screen-track{display:flex;width:400%;height:100%;will-change:transform}
+.screen{width:25%;height:100%;overflow:hidden;flex-shrink:0}
+
+/* ── screen: chat (reutilizado em telas 1, 3) ── */
+.s-chat{padding:.5rem .8rem .8rem;display:flex;flex-direction:column;gap:.45rem}
+.s-chat-hd{font-size:.7rem;font-weight:500;color:var(--cr);padding:.4rem 0 .2rem;border-bottom:1px solid var(--bor);margin-bottom:.2rem}
+.bbl{padding:.42rem .7rem;border-radius:8px;font-size:.68rem;line-height:1.45;max-width:85%}
+.bbl.in{background:#222018;color:var(--cr);align-self:flex-start}
+.bbl.out{background:var(--gr);color:#0c0a07;align-self:flex-end}
+.bbl.bot{background:rgba(141,157,79,.1);border:1px solid rgba(141,157,79,.2);color:var(--gr);font-size:.58rem;letter-spacing:.04em;align-self:center;text-align:center;padding:.35rem .6rem}
+
+/* ── screen: follow-up ── */
+.s-fu{padding:.6rem .65rem}
+.s-fu-hd{font-size:.62rem;font-weight:500;color:var(--cr);margin-bottom:.55rem;display:flex;justify-content:space-between;align-items:center}
+.fu-live{font-size:.56rem;color:var(--gr)}
+.fu-list{display:flex;flex-direction:column;gap:.28rem;margin-bottom:.45rem}
+.fu-row{display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;border-radius:3px;background:var(--sur);border:1px solid var(--bor)}
+.fu-row.done{opacity:.5}
+.fu-row.now{background:rgba(141,157,79,.08);border-color:rgba(141,157,79,.35)}
+.fu-day{font-size:.58rem;font-weight:500;color:var(--gr);min-width:32px}
+.fu-txt{font-size:.6rem;color:var(--cr);flex:1;line-height:1.3}
+.fu-ok{font-size:.58rem;color:var(--gr)}
+.fu-dot{width:6px;height:6px;border-radius:50%;background:var(--gr);flex-shrink:0;animation:pulse 1.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ── screen: review ── */
+.s-rev{padding:.6rem .65rem}
+.s-rev-hd{font-size:.62rem;font-weight:500;color:var(--cr);margin-bottom:.45rem}
+.rev-score{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.5rem;padding:.45rem .5rem;background:rgba(141,157,79,.08);border:1px solid rgba(141,157,79,.2);border-radius:3px}
+.rev-n{font-family:'Source Serif 4',serif;font-size:1.5rem;font-weight:200;color:var(--gr)}
+.rev-stars{font-size:.7rem;color:var(--gr)}
+.rev-ct{font-size:.52rem;color:var(--mu2);align-self:center}
+.rev-list{display:flex;flex-direction:column;gap:.28rem;margin-bottom:.4rem}
+.rev-row{padding:.38rem .5rem;background:var(--sur);border:1px solid var(--bor);border-radius:3px}
+.rev-who{font-size:.58rem;font-weight:500;color:var(--cr);display:flex;align-items:center;gap:.3rem;margin-bottom:.18rem}
+.rev-stars-s{font-size:.52rem;color:var(--gr)}
+.rev-quote{font-size:.56rem;color:var(--mu2);line-height:1.35;font-style:italic}
+
+/* ── 5. RESULT ── */
+.res-wrap{height:220vh;position:relative;background:var(--bg2)}
+.res-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.res-inner{max-width:860px;width:88%;text-align:center}
+.r-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:1.5rem;opacity:0}
+.r-big{font-family:'Source Serif 4',serif;font-size:clamp(2.5rem,7vw,6.5rem);font-weight:200;line-height:1.06;color:var(--cr);opacity:0}
+.r-big em{font-style:italic;color:var(--gr)}
+.r-sub{font-size:clamp(.82rem,1.4vw,.98rem);color:var(--mu2);margin-top:2rem;line-height:1.8;opacity:0}
+
+/* ── 6. CTA ── */
+.cta-sec{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--sur);border-top:1px solid var(--bor);padding:6rem 5%;text-align:center}
+.cta-w{max-width:640px}
+.cta-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:1.5rem}
+.cta-h{font-family:'Source Serif 4',serif;font-size:clamp(1.8rem,4vw,3.4rem);font-weight:200;line-height:1.15;color:var(--cr);margin-bottom:1.25rem}
+.cta-h em{font-style:italic;color:var(--gr)}
+.cta-p{font-size:.9rem;color:var(--mu2);line-height:1.8;margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--gr);color:var(--bg);padding:1rem 2.25rem;text-decoration:none;font-size:.86rem;letter-spacing:.06em;font-weight:500;border-radius:2px;transition:background .2s}
+.cta-btn:hover{background:var(--gr2)}
+.cta-note{font-size:.62rem;color:var(--mu);margin-top:1.25rem;letter-spacing:.12em;text-transform:uppercase}
+
+footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-between;font-size:.68rem;color:var(--mu)}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  /* sys section */
+  .sys-sticky{
+    grid-template-columns:1fr;
+    justify-items:center;
+    align-content:start;
+    padding-top:3.5rem;
+  }
+  .sys-left{
+    padding:0 6%;
+    position:relative;
+    width:100%;
+    height:130px;
+    margin-bottom:.75rem;
+    overflow:hidden;
+  }
+  .sys-step{
+    position:absolute;
+    top:0;
+    left:6%;
+    transform:none;
+    display:block;
+    width:88%;
+  }
+  .st-num{display:none}
+
+  /* celular — maior no mobile, ocupa mais da tela */
+  .sys-right{padding:0 4%}
+  .phone-outer{width:min(82vw,270px)}
+  .phone-screen{height:clamp(310px,54vw,380px) !important}
+
+  /* hero */
+  .h-l1,.h-l2{white-space:normal;width:88%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">RELTER<b>.</b></div>
+  <a href="https://wa.me/5511917199810" class="nav-btn">Agendar conversa</a>
+</nav>
+
+<!-- ══ 1. HERO ══ -->
+<div class="hero-wrap" id="heroWrap">
+  <div class="hero-sticky">
+    <span class="h-bg">RELTER</span>
+    <h1 class="h-l1" id="hL1">Seu produto</h1>
+    <h1 class="h-l2" id="hL2">é de elite.</h1>
+    <p class="h-l3" id="hL3">Seu processo de vendas também deveria ser.</p>
+    <div class="hero-fade"></div>
+    <div class="scroll-hint" id="sHint">
+      <div class="s-line"></div>
+      <span class="s-lbl">Scroll</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 2. PROBLEM — tela 1 ══ -->
+<div class="prob-wrap" id="probWrap">
+  <div class="prob-sticky">
+    <div class="prob-inner prob-scr1" id="probInner1">
+      <span class="pl" id="pl0">O cliente que entra pela sua porta</span>
+      <span class="pl it" id="pl1">entra primeiro pelo WhatsApp.</span>
+      <span class="pl" id="pl2" style="margin-top:.6em">Ali ele decide de quem vai comprar.</span>
+      <span class="pl" id="pl3">Pelo seu atendimento —</span>
+      <span class="pl it" id="pl3b">vai ser de você?</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 2b. PROBLEM — tela 2 ══ -->
+<div class="prob-wrap" id="probWrap2">
+  <div class="prob-sticky">
+    <div class="prob-inner" id="probInner2">
+      <span class="pl" id="pb0">A experiência começa no primeiro contato.</span>
+      <span class="pl" id="pb1">Um atendimento à altura do seu produto.</span>
+      <span class="pl" id="pb2">Isso separa quem vende,</span>
+      <span class="pl it pb-big" id="pb3">de quem impressiona.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 3. PIVOT ══ -->
+<div class="pivot-wrap" id="pivotWrap">
+  <div class="pivot-sticky">
+    <div class="pivot-inner">
+      <span class="pv" id="pv0">Um sistema que trabalha cada lead</span>
+      <span class="pv" id="pv1">do primeiro contato</span>
+      <span class="pv ac" id="pv2">até o review.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 4. SYSTEM ══ -->
+<div class="sys-wrap" id="sysWrap">
+  <div class="sys-sticky">
+
+    <div class="sys-left">
+      <div class="sys-step first" id="st0">
+        <span class="st-eyebrow">01 — Resposta imediata</span>
+        <div class="st-num">01</div>
+        <h3 class="st-title">22h47.<br>O sistema já atende.</h3>
+        <p class="st-desc">Enquanto você dorme, a IA responde e qualifica em segundos. Nenhum lead fica sem resposta.</p>
+      </div>
+      <div class="sys-step" id="st1">
+        <span class="st-eyebrow">02 — Follow-up automático</span>
+        <div class="st-num">02</div>
+        <h3 class="st-title">Lead esfriou?<br>O sistema reaquece.</h3>
+        <p class="st-desc">Sequência automática no dia certo. Nenhum lead some sem ter recebido uma segunda chance.</p>
+      </div>
+      <div class="sys-step" id="st2">
+        <span class="st-eyebrow">03 — Pós-venda</span>
+        <div class="st-num">03</div>
+        <h3 class="st-title">Projeto entregue.<br>Relacionamento começa.</h3>
+        <p class="st-desc">Mensagem automática após a entrega. Cliente satisfeito volta — e ainda indica novos projetos.</p>
+      </div>
+      <div class="sys-step" id="st3">
+        <span class="st-eyebrow">04 — Review automático</span>
+        <div class="st-num">04</div>
+        <h3 class="st-title">Reputação que<br>vende por você.</h3>
+        <p class="st-desc">No momento certo, o sistema pede o review. Google, Instagram. Sua vitrine cresce sem esforço.</p>
+      </div>
+    </div>
+
+    <div class="sys-right">
+      <div class="phone-outer">
+        <div class="phone-notch"></div>
+        <div class="phone-inner" id="phoneInner">
+          <div class="phone-status">
+            <span class="phone-time">22:47</span>
+            <div class="phone-icons">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/><rect x="9" y="0" width="2" height="8" rx="1" opacity=".4"/></svg>
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor" style="opacity:.8"><path d="M7 2C9.8 2 12.3 3.2 14 5.1L12.6 6.4C11.3 4.9 9.3 4 7 4S2.7 4.9 1.4 6.4L0 5.1C1.7 3.2 4.2 2 7 2zM7 6C8.7 6 10.2 6.7 11.3 7.8L9.9 9.1C9.1 8.3 8.1 7.8 7 7.8S4.9 8.3 4.1 9.1L2.7 7.8C3.8 6.7 5.3 6 7 6z"/></svg>
+              <svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg>
+            </div>
+          </div>
+          <div class="phone-screen">
+            <div class="screen-track" id="screenTrack">
+
+              <!-- Screen 1: resposta imediata -->
+              <div class="screen">
+                <div class="s-chat">
+                  <div class="s-chat-hd">WhatsApp · Móveis Casa Nova</div>
+                  <div class="bbl in">Oi, boa noite! Gostaria de fazer um orçamento 😊</div>
+                  <div class="bbl bot">● Sistema recebendo — respondendo em instantes</div>
+                  <div class="bbl out">Olá! Fico feliz em ajudar! Qual ambiente você quer transformar?</div>
+                  <div class="bbl bot">🤖 Respondido em 9 seg · 22h47</div>
+                </div>
+              </div>
+
+              <!-- Screen 2: follow-up automático -->
+              <div class="screen">
+                <div class="s-fu">
+                  <div class="s-fu-hd">
+                    <span>Follow-up · Automático</span>
+                    <span class="fu-live">● ativo</span>
+                  </div>
+                  <div class="fu-list">
+                    <div class="fu-row done">
+                      <div class="fu-day">Dia 1</div>
+                      <div class="fu-txt">Qualificação enviada</div>
+                      <div class="fu-ok">✓</div>
+                    </div>
+                    <div class="fu-row done">
+                      <div class="fu-day">Dia 3</div>
+                      <div class="fu-txt">"Ainda pensa no projeto?"</div>
+                      <div class="fu-ok">✓</div>
+                    </div>
+                    <div class="fu-row now">
+                      <div class="fu-dot"></div>
+                      <div class="fu-day">Dia 7</div>
+                      <div class="fu-txt">"Temos slot aberto essa semana"</div>
+                    </div>
+                    <div class="fu-row">
+                      <div class="fu-day">Dia 14</div>
+                      <div class="fu-txt">Oferta especial programada</div>
+                    </div>
+                  </div>
+                  <div class="bbl bot">🤖 Sequência ativa para 14 leads</div>
+                </div>
+              </div>
+
+              <!-- Screen 3: pós-venda -->
+              <div class="screen">
+                <div class="s-chat">
+                  <div class="s-chat-hd">Pós-venda · Carlos M.</div>
+                  <div class="bbl bot">🤖 Disparado 7 dias após entrega</div>
+                  <div class="bbl out">Oi Carlos! Seu projeto foi entregue há uma semana. Como ficou?</div>
+                  <div class="bbl in">Ficou incrível! A família toda adorou 😍</div>
+                  <div class="bbl out">Que ótimo! Temos condição especial para quem nos indica. Tem alguém em mente?</div>
+                  <div class="bbl in">Tenho! Minha irmã tá reformando o quarto</div>
+                  <div class="bbl bot">● Novo lead gerado por indicação</div>
+                </div>
+              </div>
+
+              <!-- Screen 4: review automático -->
+              <div class="screen">
+                <div class="s-rev">
+                  <div class="s-rev-hd">Reviews · Automático</div>
+                  <div class="rev-score">
+                    <span class="rev-n">4.9</span>
+                    <span class="rev-stars">★★★★★</span>
+                    <span class="rev-ct">47 avaliações · Google</span>
+                  </div>
+                  <div class="rev-list">
+                    <div class="rev-row">
+                      <div class="rev-who"><span class="rev-stars-s">★★★★★</span> Carlos M.</div>
+                      <div class="rev-quote">"Móveis perfeitos e prazo cumprido!"</div>
+                    </div>
+                    <div class="rev-row">
+                      <div class="rev-who"><span class="rev-stars-s">★★★★★</span> Ana L.</div>
+                      <div class="rev-quote">"Atendimento impecável do início ao fim"</div>
+                    </div>
+                    <div class="rev-row">
+                      <div class="rev-who"><span class="rev-stars-s">★★★★★</span> Roberto K.</div>
+                      <div class="rev-quote">"Superou todas as expectativas"</div>
+                    </div>
+                  </div>
+                  <div class="bbl bot">🤖 Review coletado automaticamente</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 5. RESULT ══ -->
+<div class="res-wrap" id="resWrap">
+  <div class="res-sticky">
+    <div class="res-inner">
+      <span class="r-tag" id="rTag">O resultado</span>
+      <h2 class="r-big" id="rBig">Uma máquina comercial<br>que trabalha <em>por você.</em></h2>
+      <p class="r-sub" id="rSub">Do primeiro contato ao review — sem depender de memória,<br>de sorte ou do horário comercial.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6. CTA ══ -->
+<section class="cta-sec">
+  <div class="cta-w">
+    <span class="cta-tag">Próximo passo</span>
+    <h2 class="cta-h">Pronto para ter um processo comercial<br>à altura do seu <em>produto?</em></h2>
+    <p class="cta-p">Uma conversa de 20 minutos é suficiente para entender se a Relter faz sentido para o seu momento.</p>
+    <a href="https://wa.me/5511917199810" class="cta-btn">Agendar minha conversa gratuita →</a>
+    <p class="cta-note">Resposta em até 24h · Sem compromisso</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Relter Network</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── HERO
+const heroST = { trigger:'#heroWrap', start:'top top', end:'bottom top', scrub:1 };
+gsap.to('.h-bg', { y:'-6vh',  ease:'none', scrollTrigger:heroST });
+gsap.to('#hL1',  { y:'-48vh', ease:'none', scrollTrigger:heroST });
+gsap.to('#hL2',  { y:'-36vh', ease:'none', scrollTrigger:heroST });
+gsap.to('#hL3',  { y:'-22vh', ease:'none', scrollTrigger:heroST });
+gsap.to('#sHint',{ opacity:0, y:'-10vh', ease:'none',
+  scrollTrigger:{ trigger:'#heroWrap', start:'10% top', end:'25% top', scrub:true }
+});
+
+// ── PROBLEM tela 1: 5 linhas
+['#pl0','#pl1','#pl2','#pl3','#pl3b'].forEach((sel, i) => {
+  gsap.fromTo(sel,
+    { opacity:0, y:24 },
+    { opacity:1, y:0, ease:'power2.out',
+      scrollTrigger:{ trigger:'#probWrap', start:`${6 + i*13}% top`, end:`${14 + i*13}% top`, scrub:1 }
+    }
+  );
+});
+gsap.to('#probInner1', {
+  opacity:0, y:-20,
+  scrollTrigger:{ trigger:'#probWrap', start:'84% top', end:'95% top', scrub:true }
+});
+
+// ── PROBLEM tela 2: 4 linhas
+['#pb0','#pb1','#pb2','#pb3'].forEach((sel, i) => {
+  gsap.fromTo(sel,
+    { opacity:0, y:24 },
+    { opacity:1, y:0, ease:'power2.out',
+      scrollTrigger:{ trigger:'#probWrap2', start:`${8 + i*16}% top`, end:`${18 + i*16}% top`, scrub:1 }
+    }
+  );
+});
+gsap.to('#probInner2', {
+  opacity:0, y:-20,
+  scrollTrigger:{ trigger:'#probWrap2', start:'84% top', end:'95% top', scrub:true }
+});
+
+// ── PIVOT
+gsap.fromTo('#pv0',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'8%  top',end:'22% top',scrub:.8}});
+gsap.fromTo('#pv1',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'24% top',end:'38% top',scrub:.8}});
+gsap.fromTo('#pv2',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'40% top',end:'54% top',scrub:.8}});
+
+// ── SYSTEM
+const steps = [
+  document.getElementById('st0'),
+  document.getElementById('st1'),
+  document.getElementById('st2'),
+  document.getElementById('st3'),
+];
+const track      = document.getElementById('screenTrack');
+const phoneInner = document.getElementById('phoneInner');
+
+const getScreenW = () => track.parentElement.offsetWidth;
+
+// Estado inicial
+gsap.set(steps[0], { opacity:1, y:0 });
+gsap.set([steps[1], steps[2], steps[3]], { opacity:0, y:22 });
+gsap.set(track, { x:0 });
+
+const sysTL = gsap.timeline({
+  scrollTrigger:{
+    trigger:'#sysWrap',
+    start:'top top',
+    end:'bottom top',
+    scrub:1,
+  }
+});
+
+[0, 1, 2].forEach(i => {
+  const t = (i + 1) * 0.28; // 0.28 · 0.56 · 0.84
+
+  // Step atual some
+  sysTL.to(steps[i], {
+    opacity:0, y:-22, duration:0.06, ease:'power2.in'
+  }, t - 0.08);
+
+  // ── FIX DESKTOP: fade rápido da tela esconde o "meio-slide" visível
+  sysTL.to(phoneInner, {
+    opacity:0, duration:0.04, ease:'none'
+  }, t - 0.05);
+
+  // Slide instantâneo enquanto tela está escura
+  sysTL.to(track, {
+    x: () => -(i + 1) * getScreenW(),
+    duration:0.02, ease:'none',
+    invalidateOnRefresh:true,
+  }, t - 0.02);
+
+  // Tela volta
+  sysTL.to(phoneInner, {
+    opacity:1, duration:0.06, ease:'power2.out'
+  }, t + 0.01);
+
+  // Próximo step entra
+  sysTL.to(steps[i + 1], {
+    opacity:1, y:0, duration:0.07, ease:'power2.out'
+  }, t + 0.05);
+});
+
+// Recalcula x após resize
+ScrollTrigger.addEventListener('refreshInit', () => {
+  const sysST = ScrollTrigger.getAll().find(st => st.vars && st.vars.trigger === '#sysWrap');
+  if (!sysST) return;
+  const prog = sysST.progress;
+  let idx = 0;
+  if (prog >= 0.75) idx = 3;
+  else if (prog >= 0.5) idx = 2;
+  else if (prog >= 0.25) idx = 1;
+  gsap.set(track, { x: -idx * getScreenW() });
+});
+
+// ── RESULT
+gsap.fromTo('#rTag',{opacity:0},{opacity:1,scrollTrigger:{trigger:'#resWrap',start:'8%  top',end:'18% top',scrub:.8}});
+gsap.fromTo('#rBig',{opacity:0},{opacity:1,scrollTrigger:{trigger:'#resWrap',start:'18% top',end:'34% top',scrub:.8}});
+gsap.fromTo('#rSub',{opacity:0},{opacity:1,scrollTrigger:{trigger:'#resWrap',start:'34% top',end:'50% top',scrub:.8}});
+
+window.addEventListener('load', () => ScrollTrigger.refresh());
+</script>
+</body>
+</html>
