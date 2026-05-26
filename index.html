@@ -528,12 +528,15 @@ gsap.to('#sHint',{ opacity:0, y:'-10vh', ease:'none',
   scrollTrigger:{ trigger:'#heroWrap', start:'10% top', end:'25% top', scrub:true }
 });
 
-// ── IMPACT: 3 linhas
+// ── IMPACT: 3 linhas — começa quase imediatamente ao entrar na seção
+// ip0 já inicia na tela antes de completar o lock; ip1/ip2 chegam em rápida sucessão
+const impStarts = [1, 11, 21];   // % do impactWrap onde começa cada linha
+const impEnds   = [7, 17, 27];   // % onde termina (janela de 6% = ~8vh por linha)
 ['#ip0','#ip1','#ip2'].forEach((sel, i) => {
   gsap.fromTo(sel,
-    { opacity:0, y:20 },
+    { opacity:0, y:16 },
     { opacity:1, y:0, ease:'power2.out',
-      scrollTrigger:{ trigger:'#impactWrap', start:`${8 + i*18}% top`, end:`${18 + i*18}% top`, scrub:.8 }
+      scrollTrigger:{ trigger:'#impactWrap', start:`${impStarts[i]}% top`, end:`${impEnds[i]}% top`, scrub:.5 }
     }
   );
 });
@@ -542,10 +545,10 @@ gsap.to('.impact-inner', {
   scrollTrigger:{ trigger:'#impactWrap', start:'84% top', end:'95% top', scrub:true }
 });
 
-// ── PIVOT
-gsap.fromTo('#pv0',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'8%  top',end:'22% top',scrub:.8}});
-gsap.fromTo('#pv1',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'24% top',end:'38% top',scrub:.8}});
-gsap.fromTo('#pv2',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'40% top',end:'54% top',scrub:.8}});
+// ── PIVOT — mesma lógica: texto entra rápido logo que a seção trava
+gsap.fromTo('#pv0',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'1%  top',end:'9%  top',scrub:.5}});
+gsap.fromTo('#pv1',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'12% top',end:'20% top',scrub:.5}});
+gsap.fromTo('#pv2',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'23% top',end:'31% top',scrub:.5}});
 
 // ── BENEFITS — sticky phone + sliding screens
 (function(){
