@@ -59,31 +59,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content
 .s-lbl{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
 
 /* ── 2. IMPACT ── */
-.impact-wrap{height:200vh;position:relative;background:var(--bg2)}
+.impact-wrap{height:140vh;position:relative;background:var(--bg2)}
 .impact-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .impact-inner{max-width:760px;width:82%}
 .ip{display:block;font-family:'Source Serif 4',serif;font-size:clamp(1.4rem,2.6vw,2.6rem);font-weight:200;line-height:1.35;color:var(--cr);opacity:0;transform:translateY(20px)}
 .ip.it{font-style:italic;color:var(--gr);font-size:clamp(1.7rem,3.2vw,3.2rem)}
 
 /* ── 3. PIVOT ── */
-.pivot-wrap{height:200vh;position:relative;background:var(--bg2)}
+.pivot-wrap{height:150vh;position:relative;background:var(--bg2)}
 .pivot-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pivot-inner{max-width:820px;width:88%;text-align:center}
 .pv{display:block;font-family:'Source Serif 4',serif;font-size:clamp(1.8rem,4.5vw,4.2rem);font-weight:200;line-height:1.2;color:var(--cr);opacity:0;transform:translateY(18px)}
 .pv.ac{color:var(--gr);font-style:italic}
 
-/* ── 4. PROBLEM → SOLUTION BLOCKS ── */
-.ps-wrap{background:var(--bg)}
-.ps-block{min-height:100vh;display:flex;align-items:center;padding:5rem 8%;gap:7%}
-.ps-block.flip{flex-direction:row-reverse;background:var(--bg2)}
-.ps-text{flex:1;max-width:480px;opacity:0;transform:translateX(-40px)}
-.ps-block.flip .ps-text{transform:translateX(40px)}
-.ps-num{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:.8rem}
-.ps-q{font-family:'Source Serif 4',serif;font-size:clamp(1.3rem,2.2vw,2.2rem);font-weight:200;line-height:1.35;color:var(--mu2);margin-bottom:1.1rem}
-.ps-a{font-family:'Source Serif 4',serif;font-size:clamp(1.1rem,1.8vw,1.8rem);font-weight:200;line-height:1.3;color:var(--cr)}
-.ps-a em{color:var(--gr);font-style:italic}
-.ps-phone{flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(50px)}
-.ps-screen{overflow:hidden;padding:.5rem .75rem .75rem;display:flex;flex-direction:column;gap:.45rem}
+/* ── 4. BENEFITS — sticky phone ── */
+.ben-wrap{height:760vh;position:relative;background:var(--bg)}
+.ben-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+
+/* left: texto dos benefícios */
+.ben-left{padding:0 4% 0 8%;position:relative}
+.ben-item{position:absolute;top:50%;transform:translateY(-50%);opacity:0;width:90%;will-change:opacity,transform}
+.ben-item.first{opacity:1}
+.ben-eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);margin-bottom:.6rem;display:block}
+.ben-title{font-family:'Source Serif 4',serif;font-size:clamp(1.6rem,2.6vw,2.6rem);font-weight:200;color:var(--cr);line-height:1.2;margin-bottom:.85rem}
+.ben-desc{font-size:.9rem;color:var(--mu2);line-height:1.75;max-width:380px}
+
+/* progress dots */
+.ben-dots{position:absolute;bottom:2.5rem;left:8%;display:flex;gap:.5rem;align-items:center}
+.ben-dot{width:6px;height:6px;border-radius:50%;background:var(--bor);transition:background .3s,width .3s;cursor:default}
+.ben-dot.active{background:var(--gr);width:20px;border-radius:3px}
+
+/* right: phone */
+.ben-right{display:flex;align-items:center;justify-content:center;padding:0 8% 0 4%}
+.ben-screen-track{display:flex;width:700%;height:100%;will-change:transform}
+.ben-screen{width:calc(100%/7);height:100%;overflow:hidden;flex-shrink:0}
 
 .phone-outer{
   width:clamp(200px,22vw,280px);
@@ -228,11 +237,13 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
 /* ── MOBILE ── */
 @media(max-width:768px){
   .h-l1,.h-l2{white-space:normal;width:88%;text-align:center}
-  .ps-block,.ps-block.flip{flex-direction:column!important;padding:3.5rem 6%;gap:2rem;min-height:auto}
-  .ps-text{max-width:100%;transform:none!important}
-  .ps-phone{transform:none!important}
-  .phone-outer{width:min(78vw,260px)}
-  .phone-screen{height:clamp(300px,52vw,380px)!important}
+  .ben-sticky{grid-template-columns:1fr;align-content:start;padding-top:3.5rem}
+  .ben-left{padding:0 6%;position:relative;width:100%;height:140px;margin-bottom:.75rem;overflow:hidden}
+  .ben-item{position:absolute;top:0;left:6%;transform:none;width:88%}
+  .ben-dots{left:6%;bottom:auto;top:145px}
+  .ben-right{padding:0 4%}
+  .phone-outer{width:min(82vw,270px)}
+  .phone-screen{height:clamp(310px,54vw,380px)!important}
 }
 </style>
 </head>
@@ -280,187 +291,177 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
   </div>
 </div>
 
-<!-- ══ 4. PROBLEM → SOLUTION ══ -->
-<div class="ps-wrap" id="psWrap">
+<!-- ══ 4. BENEFITS ══ -->
+<div class="ben-wrap" id="benWrap">
+  <div class="ben-sticky">
 
-  <!-- BLOCO 1: Primeiro atendimento -->
-  <div class="ps-block" id="psb1">
-    <div class="ps-text">
-      <span class="ps-num">01</span>
-      <p class="ps-q">22h47. Um lead chegou. Ninguém respondeu.</p>
-      <p class="ps-a">O sistema atende na hora, <em>em qualquer horário.</em></p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">22:47</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/><rect x="9" y="0" width="2" height="8" rx="1" opacity=".4"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen">
-            <div class="s-chat-hd">WhatsApp · Móveis Casa Nova</div>
-            <div class="bbl in">Oi, boa noite! Gostaria de fazer um orçamento 😊</div>
-            <div class="bbl bot">● Sistema recebendo — respondendo em instantes</div>
-            <div class="bbl out">Olá! Fico feliz em ajudar! Qual ambiente você quer transformar?</div>
-            <div class="bbl bot">🤖 Respondido em 9 seg · 22h47</div>
-          </div></div>
-        </div>
+    <!-- LEFT: textos dos benefícios -->
+    <div class="ben-left">
+
+      <div class="ben-item first" id="bn0">
+        <span class="ben-eyebrow">01 — Atendimento</span>
+        <h3 class="ben-title">Nenhum lead fica<br>sem resposta.</h3>
+        <p class="ben-desc">O sistema responde no segundo que a mensagem chega — qualquer dia, qualquer hora. Enquanto você está em reunião, com a família ou viajando.</p>
+      </div>
+
+      <div class="ben-item" id="bn1">
+        <span class="ben-eyebrow">02 — Acompanhamento</span>
+        <h3 class="ben-title">Cada lead é acompanhado<br>até a decisão.</h3>
+        <p class="ben-desc">Sequência automática de mensagens nos dias certos. O sistema qualifica o interesse e mantém o contato sem você precisar lembrar de nada.</p>
+      </div>
+
+      <div class="ben-item" id="bn2">
+        <span class="ben-eyebrow">03 — Controle</span>
+        <h3 class="ben-title">Você sabe onde está<br>cada negociação.</h3>
+        <p class="ben-desc">Veja em qual etapa está cada cliente, o valor de cada negócio e o que precisa ser feito. Tudo organizado em um único painel.</p>
+      </div>
+
+      <div class="ben-item" id="bn3">
+        <span class="ben-eyebrow">04 — Centralização</span>
+        <h3 class="ben-title">Todas as mensagens<br>em um só lugar.</h3>
+        <p class="ben-desc">WhatsApp, Instagram, LinkedIn, Facebook, Google e Pinterest — tudo numa única tela. Nenhuma mensagem se perde entre plataformas.</p>
+      </div>
+
+      <div class="ben-item" id="bn4">
+        <span class="ben-eyebrow">05 — Pós-venda</span>
+        <h3 class="ben-title">O cliente comprou.<br>O relacionamento continua.</h3>
+        <p class="ben-desc">Mensagem automática após a entrega. Cliente satisfeito se sente lembrado — e indica novos projetos sem você precisar pedir.</p>
+      </div>
+
+      <div class="ben-item" id="bn5">
+        <span class="ben-eyebrow">06 — Reputação</span>
+        <h3 class="ben-title">Avaliações que chegam<br>sem você pedir.</h3>
+        <p class="ben-desc">No momento certo, o sistema solicita a avaliação no Google e Instagram. Sua reputação cresce a cada projeto entregue.</p>
+      </div>
+
+      <div class="ben-item" id="bn6">
+        <span class="ben-eyebrow">07 — Presença digital</span>
+        <h3 class="ben-title">Sua vitrine online<br>já convence antes do contato.</h3>
+        <p class="ben-desc">Antes de qualquer mensagem, o cliente te pesquisa. Um site profissional com seu portfólio transforma a primeira impressão em interesse real.</p>
+      </div>
+
+      <!-- dots de progresso -->
+      <div class="ben-dots">
+        <div class="ben-dot active" id="bd0"></div>
+        <div class="ben-dot" id="bd1"></div>
+        <div class="ben-dot" id="bd2"></div>
+        <div class="ben-dot" id="bd3"></div>
+        <div class="ben-dot" id="bd4"></div>
+        <div class="ben-dot" id="bd5"></div>
+        <div class="ben-dot" id="bd6"></div>
       </div>
     </div>
-  </div>
 
-  <!-- BLOCO 2: Acompanhamento (flip) -->
-  <div class="ps-block flip" id="psb2">
-    <div class="ps-text">
-      <span class="ps-num">02</span>
-      <p class="ps-q">Ele não comprou na hora. Ninguém foi atrás. Ele foi pro concorrente.</p>
-      <p class="ps-a">O sistema envia mensagens nos <em>momentos certos</em> até ele voltar.</p>
-    </div>
-    <div class="ps-phone">
+    <!-- RIGHT: phone fixo com telas deslizando -->
+    <div class="ben-right">
       <div class="phone-outer">
         <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen">
-            <div class="s-fu-hd"><span>Acompanhamento automático</span><span class="fu-live">● ativo</span></div>
-            <div class="fu-list">
-              <div class="fu-row done"><div class="fu-day">Dia 1</div><div class="fu-txt">Qualificação enviada</div><div class="fu-ok">✓</div></div>
-              <div class="fu-row done"><div class="fu-day">Dia 3</div><div class="fu-txt">"Ainda pensa no projeto?"</div><div class="fu-ok">✓</div></div>
-              <div class="fu-row now"><div class="fu-dot"></div><div class="fu-day">Dia 7</div><div class="fu-txt">"Temos agenda aberta essa semana"</div></div>
-              <div class="fu-row"><div class="fu-day">Dia 14</div><div class="fu-txt">Oferta especial programada</div></div>
+        <div class="phone-inner" id="benPhoneInner">
+          <div class="phone-status">
+            <span class="phone-time">22:47</span>
+            <div class="phone-icons">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/><rect x="9" y="0" width="2" height="8" rx="1" opacity=".4"/></svg>
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor" style="opacity:.8"><path d="M7 2C9.8 2 12.3 3.2 14 5.1L12.6 6.4C11.3 4.9 9.3 4 7 4S2.7 4.9 1.4 6.4L0 5.1C1.7 3.2 4.2 2 7 2zM7 6C8.7 6 10.2 6.7 11.3 7.8L9.9 9.1C9.1 8.3 8.1 7.8 7 7.8S4.9 8.3 4.1 9.1L2.7 7.8C3.8 6.7 5.3 6 7 6z"/></svg>
+              <svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg>
             </div>
-            <div class="bbl bot">🤖 Sequência ativa para 14 leads</div>
-          </div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div>
+          <div class="phone-screen">
+            <div class="ben-screen-track" id="benTrack">
 
-  <!-- BLOCO 3: Controle das negociações -->
-  <div class="ps-block" id="psb3">
-    <div class="ps-text">
-      <span class="ps-num">03</span>
-      <p class="ps-q">Você tem 40 negociações abertas. Não sabe o que está acontecendo em nenhuma.</p>
-      <p class="ps-a">Todas as negociações em um só lugar, <em>com valores e etapas.</em></p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen" style="padding:.5rem .6rem">
-            <div class="pipe-col-wrap">
-              <div class="pipe-col"><div class="pipe-col-hd">Novo</div><div class="pipe-card hi"><div class="pipe-name">Casa Nova</div><div class="pipe-val">R$42k</div></div><div class="pipe-card"><div class="pipe-name">Studio AR</div><div class="pipe-val">R$18k</div></div><div class="pipe-card"><div class="pipe-name">Loft 304</div><div class="pipe-val">R$28k</div></div></div>
-              <div class="pipe-col"><div class="pipe-col-hd">Proposta</div><div class="pipe-card hi"><div class="pipe-name">Vila Nova</div><div class="pipe-val">R$67k</div></div><div class="pipe-card"><div class="pipe-name">Res. Berg</div><div class="pipe-val">R$95k</div></div></div>
-              <div class="pipe-col"><div class="pipe-col-hd">Fechado</div><div class="pipe-card hi"><div class="pipe-name">Ap. 1401</div><div class="pipe-val">R$53k</div><div class="pipe-ch">✓</div></div><div class="pipe-card hi"><div class="pipe-name">Cobert. MG</div><div class="pipe-val">R$120k</div><div class="pipe-ch">✓</div></div></div>
+              <!-- Tela 1: atendimento -->
+              <div class="ben-screen">
+                <div class="s-chat" style="padding:.5rem .8rem .8rem">
+                  <div class="s-chat-hd">WhatsApp · Móveis Casa Nova</div>
+                  <div class="bbl in">Oi, boa noite! Gostaria de fazer um orçamento 😊</div>
+                  <div class="bbl bot">● Sistema recebendo — respondendo em instantes</div>
+                  <div class="bbl out">Olá! Fico feliz em ajudar! Qual ambiente você quer transformar?</div>
+                  <div class="bbl bot">🤖 Respondido em 9 seg · 22h47</div>
+                </div>
+              </div>
+
+              <!-- Tela 2: acompanhamento -->
+              <div class="ben-screen">
+                <div class="s-fu">
+                  <div class="s-fu-hd"><span>Acompanhamento automático</span><span class="fu-live">● ativo</span></div>
+                  <div class="fu-list">
+                    <div class="fu-row done"><div class="fu-day">Dia 1</div><div class="fu-txt">Qualificação enviada</div><div class="fu-ok">✓</div></div>
+                    <div class="fu-row done"><div class="fu-day">Dia 3</div><div class="fu-txt">"Ainda pensa no projeto?"</div><div class="fu-ok">✓</div></div>
+                    <div class="fu-row now"><div class="fu-dot"></div><div class="fu-day">Dia 7</div><div class="fu-txt">"Temos agenda aberta essa semana"</div></div>
+                    <div class="fu-row"><div class="fu-day">Dia 14</div><div class="fu-txt">Oferta especial programada</div></div>
+                  </div>
+                  <div class="bbl bot">🤖 Sequência ativa para 14 leads</div>
+                </div>
+              </div>
+
+              <!-- Tela 3: pipeline -->
+              <div class="ben-screen">
+                <div class="s-chat" style="padding:.5rem .65rem .8rem">
+                  <div class="pipe-col-wrap" style="height:auto;flex:1">
+                    <div class="pipe-col"><div class="pipe-col-hd">Novo</div><div class="pipe-card hi"><div class="pipe-name">Casa Nova</div><div class="pipe-val">R$42k</div></div><div class="pipe-card"><div class="pipe-name">Studio AR</div><div class="pipe-val">R$18k</div></div><div class="pipe-card"><div class="pipe-name">Loft 304</div><div class="pipe-val">R$28k</div></div></div>
+                    <div class="pipe-col"><div class="pipe-col-hd">Proposta</div><div class="pipe-card hi"><div class="pipe-name">Vila Nova</div><div class="pipe-val">R$67k</div></div><div class="pipe-card"><div class="pipe-name">Res. Berg</div><div class="pipe-val">R$95k</div></div></div>
+                    <div class="pipe-col"><div class="pipe-col-hd">Fechado</div><div class="pipe-card hi"><div class="pipe-name">Ap. 1401</div><div class="pipe-val">R$53k</div><div class="pipe-ch">✓</div></div><div class="pipe-card hi"><div class="pipe-name">Cobert. MG</div><div class="pipe-val">R$120k</div><div class="pipe-ch">✓</div></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tela 4: mensagens centralizadas -->
+              <div class="ben-screen">
+                <div class="s-chat" style="padding:.5rem .8rem .8rem;gap:.32rem">
+                  <div class="s-chat-hd">Mensagens · Todos os canais</div>
+                  <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Ana Lima</div><div class="inbox-msg">Gostaria de um orçamento...</div></div><span class="inbox-time">agora</span><div class="inbox-dot"></div></div>
+                  <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/instagram/E1306C" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Carlos M.</div><div class="inbox-msg">Vi o trabalho de vocês</div></div><span class="inbox-time">2min</span><div class="inbox-dot"></div></div>
+                  <div class="inbox-row"><span class="inbox-ch-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><div class="inbox-info"><div class="inbox-name">Rafael S.</div><div class="inbox-msg">Preciso reformar o escritório</div></div><span class="inbox-time">8min</span></div>
+                  <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/facebook/1877F2" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Juliana R.</div><div class="inbox-msg">Quero ver o portfólio</div></div><span class="inbox-time">14min</span></div>
+                  <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/google/4285F4" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Pedro A.</div><div class="inbox-msg">Encontrei pelo Google...</div></div><span class="inbox-time">22min</span></div>
+                  <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/pinterest/E60023" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Fernanda C.</div><div class="inbox-msg">Salvei o pin da cozinha</div></div><span class="inbox-time">1h</span></div>
+                </div>
+              </div>
+
+              <!-- Tela 5: pós-venda -->
+              <div class="ben-screen">
+                <div class="s-chat" style="padding:.5rem .8rem .8rem">
+                  <div class="s-chat-hd">Pós-venda · Carlos M.</div>
+                  <div class="bbl bot">🤖 Enviado automaticamente 7 dias após entrega</div>
+                  <div class="bbl out">Oi Carlos! Seu projeto foi entregue há uma semana. Como ficou?</div>
+                  <div class="bbl in">Ficou incrível! A família toda adorou 😍</div>
+                  <div class="bbl out">Que ótimo! Temos condição especial para quem nos indica. Tem alguém em mente?</div>
+                  <div class="bbl in">Tenho! Minha irmã tá reformando o quarto</div>
+                  <div class="bbl bot">● Novo cliente gerado por indicação</div>
+                </div>
+              </div>
+
+              <!-- Tela 6: avaliações -->
+              <div class="ben-screen">
+                <div class="s-rev">
+                  <div class="s-rev-hd">Avaliações · Google</div>
+                  <div class="rev-score"><span class="rev-n">4.9</span><span class="rev-stars">★★★★★</span><span class="rev-ct">47 avaliações</span></div>
+                  <div class="rev-list">
+                    <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Carlos M.</div><div class="rev-quote">"Móveis perfeitos e prazo cumprido!"</div></div>
+                    <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Ana L.</div><div class="rev-quote">"Atendimento impecável do início ao fim"</div></div>
+                    <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Roberto K.</div><div class="rev-quote">"Superou todas as expectativas"</div></div>
+                  </div>
+                  <div class="bbl bot">🤖 Avaliação coletada automaticamente</div>
+                </div>
+              </div>
+
+              <!-- Tela 7: site -->
+              <div class="ben-screen" style="overflow:hidden">
+                <div class="site-hero-img" style="height:150px;border-radius:0;margin-bottom:0;background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=320&q=80');background-size:cover;background-position:center"><div class="site-hero-txt" style="padding:.5rem .75rem">Ambientes que<br><em>contam histórias.</em></div></div>
+                <div style="padding:.4rem .7rem;display:flex;flex-direction:column;gap:.3rem">
+                  <div class="site-grid"><div class="site-img g1" style="background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div><div class="site-img g2" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div></div>
+                  <div class="site-cta">Ver portfólio completo →</div>
+                </div>
+              </div>
+
             </div>
-          </div></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- BLOCO 4: Mensagens centralizadas (flip) -->
-  <div class="ps-block flip" id="psb4">
-    <div class="ps-text">
-      <span class="ps-num">04</span>
-      <p class="ps-q">Mensagem no WhatsApp, no Instagram, no Google — cada uma num lugar diferente. Nada é respondido a tempo.</p>
-      <p class="ps-a">Todas as mensagens chegam em <em>uma única tela.</em></p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen" style="gap:.3rem">
-            <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Ana Lima</div><div class="inbox-msg">Gostaria de um orçamento...</div></div><span class="inbox-time">agora</span><div class="inbox-dot"></div></div>
-            <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/instagram/E1306C" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Carlos M.</div><div class="inbox-msg">Vi o trabalho de vocês</div></div><span class="inbox-time">2min</span><div class="inbox-dot"></div></div>
-            <div class="inbox-row"><span class="inbox-ch-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><div class="inbox-info"><div class="inbox-name">Rafael S.</div><div class="inbox-msg">Preciso reformar o escritório</div></div><span class="inbox-time">8min</span></div>
-            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/facebook/1877F2" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Juliana R.</div><div class="inbox-msg">Quero ver o portfólio</div></div><span class="inbox-time">14min</span></div>
-            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/google/4285F4" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Pedro A.</div><div class="inbox-msg">Encontrei pelo Google...</div></div><span class="inbox-time">22min</span></div>
-            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/pinterest/E60023" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Fernanda C.</div><div class="inbox-msg">Salvei o pin da cozinha</div></div><span class="inbox-time">1h</span></div>
-          </div></div>
-        </div>
-      </div>
-    </div>
   </div>
-
-  <!-- BLOCO 5: Relacionamento pós-venda -->
-  <div class="ps-block" id="psb5">
-    <div class="ps-text">
-      <span class="ps-num">05</span>
-      <p class="ps-q">O cliente recebeu o produto. Você não deu mais notícia. Ele nunca te indicou.</p>
-      <p class="ps-a">O sistema mantém o contato e <em>gera novas indicações.</em></p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen">
-            <div class="s-chat-hd">Pós-venda · Carlos M.</div>
-            <div class="bbl bot">🤖 Enviado automaticamente 7 dias após entrega</div>
-            <div class="bbl out">Oi Carlos! Seu projeto foi entregue há uma semana. Como ficou?</div>
-            <div class="bbl in">Ficou incrível! A família toda adorou 😍</div>
-            <div class="bbl out">Que ótimo! Temos condição especial para quem nos indica. Tem alguém em mente?</div>
-            <div class="bbl in">Tenho! Minha irmã tá reformando o quarto</div>
-            <div class="bbl bot">● Novo cliente gerado por indicação</div>
-          </div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCO 6: Avaliações (flip) -->
-  <div class="ps-block flip" id="psb6">
-    <div class="ps-text">
-      <span class="ps-num">06</span>
-      <p class="ps-q">Seu concorrente tem 200 avaliações no Google. Você tem 11.</p>
-      <p class="ps-a">O sistema pede a avaliação <em>no momento certo,</em> automaticamente.</p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen"><div class="ps-screen">
-            <div class="s-rev-hd">Avaliações · Google</div>
-            <div class="rev-score"><span class="rev-n">4.9</span><span class="rev-stars">★★★★★</span><span class="rev-ct">47 avaliações</span></div>
-            <div class="rev-list">
-              <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Carlos M.</div><div class="rev-quote">"Móveis perfeitos e prazo cumprido!"</div></div>
-              <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Ana L.</div><div class="rev-quote">"Atendimento impecável do início ao fim"</div></div>
-              <div class="rev-row"><div class="rev-who"><span class="rev-stars-s">★★★★★</span> Roberto K.</div><div class="rev-quote">"Superou todas as expectativas"</div></div>
-            </div>
-            <div class="bbl bot">🤖 Avaliação coletada automaticamente</div>
-          </div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCO 7: Seu site -->
-  <div class="ps-block" id="psb7">
-    <div class="ps-text">
-      <span class="ps-num">07</span>
-      <p class="ps-q">Antes de te ligar, o cliente pesquisa seu nome. O que ele encontra?</p>
-      <p class="ps-a">Um site profissional que <em>já convence antes do primeiro contato.</em></p>
-    </div>
-    <div class="ps-phone">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-inner">
-          <div class="phone-status"><span class="phone-time">9:41</span><div class="phone-icons"><svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor" style="opacity:.8"><rect x="0" y="2" width="2" height="6" rx="1"/><rect x="3" y="1" width="2" height="7" rx="1"/><rect x="6" y="0" width="2" height="8" rx="1"/></svg><svg width="20" height="10" viewBox="0 0 20 10" fill="currentColor" style="opacity:.8"><rect x="0" y="1" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1" fill="rgba(141,157,79,.7)"/><rect x="17.5" y="3" width="2" height="4" rx="1" opacity=".5"/></svg></div></div>
-          <div class="phone-screen" style="padding:0"><div class="ps-screen" style="padding:0;gap:0">
-            <div class="site-hero-img" style="height:140px;border-radius:0;margin-bottom:0;background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=320&q=80');background-size:cover;background-position:center"><div class="site-hero-txt" style="padding:.5rem .6rem">Ambientes que<br><em>contam histórias.</em></div></div>
-            <div style="padding:.4rem .55rem;display:flex;flex-direction:column;gap:.25rem">
-              <div class="site-grid"><div class="site-img g1" style="background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div><div class="site-img g2" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div></div>
-              <div class="site-cta">Ver portfólio completo →</div>
-            </div>
-          </div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
+
 
 <!-- ══ 6. RESULT ══ -->
 <div class="res-wrap" id="resWrap">
@@ -522,24 +523,54 @@ gsap.fromTo('#pv0',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivo
 gsap.fromTo('#pv1',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'24% top',end:'38% top',scrub:.8}});
 gsap.fromTo('#pv2',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'40% top',end:'54% top',scrub:.8}});
 
-// ── PROBLEM→SOLUTION BLOCKS
-document.querySelectorAll('.ps-block').forEach((block) => {
-  const isFlip = block.classList.contains('flip');
-  const text  = block.querySelector('.ps-text');
-  const phone = block.querySelector('.ps-phone');
-  gsap.fromTo(text,
-    { opacity:0, x: isFlip ? 50 : -50 },
-    { opacity:1, x:0, duration:.8, ease:'power2.out',
-      scrollTrigger:{ trigger:block, start:'18% bottom', toggleActions:'play none none reverse' }
+// ── BENEFITS — sticky phone + sliding screens
+(function(){
+  const benItems    = Array.from({length:7}, (_,i) => document.getElementById('bn'+i));
+  const benDots     = Array.from({length:7}, (_,i) => document.getElementById('bd'+i));
+  const benTrack    = document.getElementById('benTrack');
+  const benPhoneInner = document.getElementById('benPhoneInner');
+  const getBenW     = () => benTrack.parentElement.offsetWidth;
+
+  // estado inicial: só o item 0 visível
+  gsap.set(benItems[0],        {opacity:1, y:0});
+  gsap.set(benItems.slice(1),  {opacity:0, y:22});
+  gsap.set(benTrack,           {x:0});
+
+  const benTL = gsap.timeline({
+    scrollTrigger:{
+      trigger:'#benWrap',
+      start:'top top',
+      end:'bottom top',
+      scrub:1,
+      invalidateOnRefresh:true
     }
-  );
-  gsap.fromTo(phone,
-    { opacity:0, y:60 },
-    { opacity:1, y:0, duration:.9, ease:'power2.out',
-      scrollTrigger:{ trigger:block, start:'12% bottom', toggleActions:'play none none reverse' }
-    }
-  );
-});
+  });
+
+  [0,1,2,3,4,5].forEach(i => {
+    const t = (i+1)/7;
+    // sai item atual
+    benTL.to(benItems[i],     {opacity:0, y:-22, duration:.05, ease:'power2.in'},   t-0.07);
+    // apaga phone para esconder o slide
+    benTL.to(benPhoneInner,   {opacity:0, duration:.03, ease:'none'},               t-0.04);
+    // troca a tela instantaneamente
+    benTL.to(benTrack,        {x:()=>-(i+1)*getBenW(), duration:.02, ease:'none', invalidateOnRefresh:true}, t-0.02);
+    // acende phone
+    benTL.to(benPhoneInner,   {opacity:1, duration:.05, ease:'power2.out'},          t+0.01);
+    // entra próximo item
+    benTL.to(benItems[i+1],   {opacity:1, y:0,  duration:.06, ease:'power2.out'},   t+0.03);
+    // dots: desativa atual, ativa próximo
+    benTL.to(benDots[i],      {width:'6px',  background:'var(--bor)', duration:.04}, t-0.05);
+    benTL.to(benDots[i+1],    {width:'20px', background:'var(--gr)',  duration:.04}, t+0.02);
+  });
+
+  // corrige posição do track ao redimensionar
+  ScrollTrigger.addEventListener('refreshInit', () => {
+    const benST = ScrollTrigger.getAll().find(st => st.vars?.trigger === '#benWrap');
+    if(!benST) return;
+    const idx = Math.min(Math.floor(benST.progress * 7), 6);
+    gsap.set(benTrack, {x: -idx * getBenW()});
+  });
+})();
 
 // ── RESULT
 gsap.fromTo('#rTag',{opacity:0},{opacity:1,scrollTrigger:{trigger:'#resWrap',start:'8%  top',end:'18% top',scrub:.8}});
