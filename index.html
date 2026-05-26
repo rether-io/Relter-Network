@@ -61,16 +61,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content
 /* ── 2. PROBLEM ── */
 .prob-wrap{height:480vh;position:relative}
 .prob-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.prob-inner{max-width:880px;width:88%}
+.prob-inner{max-width:760px;width:82%}
 .pl{
   display:block;
-  font-family:'Source Serif 4',serif;font-size:clamp(1.9rem,5vw,4.6rem);
-  font-weight:200;line-height:1.12;color:var(--cr);
+  font-family:'Source Serif 4',serif;font-size:clamp(1.6rem,3vw,3rem);
+  font-weight:200;line-height:1.18;color:var(--cr);
   opacity:0;transform:translateY(24px);
 }
 .pl.it{font-style:italic;color:var(--gr)}
-.prob-scr1 .pl.it{font-size:clamp(2.4rem,6.5vw,6.2rem)}
-.pb-big{font-size:clamp(2.6rem,7vw,6.8rem)!important}
+.prob-scr1 .pl.it{font-size:clamp(2rem,3.8vw,3.8rem)}
+.pb-big{font-size:clamp(2.2rem,4.2vw,4.2rem)!important}
 .pl.sm{font-family:'DM Sans',sans-serif;font-size:clamp(.82rem,1.4vw,1.05rem);font-weight:300;color:var(--mu2);margin-top:1.5rem}
 
 /* ── 3. PIVOT ── */
@@ -149,7 +149,90 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content
 .rev-stars-s{font-size:.52rem;color:var(--gr)}
 .rev-quote{font-size:.56rem;color:var(--mu2);line-height:1.35;font-style:italic}
 
-/* ── 5. RESULT ── */
+/* ── 5. ECOSYSTEM ── */
+.eco-sec{padding:7rem 5% 8rem;background:var(--bg)}
+.eco-top{text-align:center;margin-bottom:4rem}
+.eco-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gr);display:block;margin-bottom:1.2rem}
+.eco-h{font-family:'Source Serif 4',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:200;line-height:1.15;color:var(--cr)}
+.eco-h em{font-style:italic;color:var(--gr)}
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+.eco-card{display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.eco-label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu2);text-align:center}
+
+/* mini phone */
+.mp-outer{
+  width:160px;background:#1a1814;
+  border-radius:28px 28px 0 0;padding:7px;
+  box-shadow:0 0 0 1px #2a2820,0 0 0 2px #141210,inset 0 0 0 1px rgba(255,255,255,.04),16px 16px 48px rgba(0,0,0,.7);
+  position:relative;
+}
+.mp-outer::before{content:'';position:absolute;left:-2px;top:60px;width:2px;height:20px;background:#222;border-radius:2px 0 0 2px;box-shadow:0 26px 0 #222}
+.mp-outer::after{content:'';position:absolute;right:-2px;top:72px;width:2px;height:28px;background:#222;border-radius:0 2px 2px 0}
+.mp-inner{background:#000;border-radius:22px 22px 0 0;overflow:hidden}
+.mp-status{display:flex;justify-content:space-between;align-items:center;padding:.4rem .7rem 0;font-size:.42rem;font-weight:600;color:var(--cr);margin-top:6px}
+.mp-notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:56px;height:16px;background:#000;border-radius:8px;z-index:10}
+.mp-screen{height:260px;overflow:hidden;padding:.4rem .5rem;display:flex;flex-direction:column;gap:.28rem}
+
+/* mini relter header */
+.mp-hd{font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr);font-weight:400;padding:.2rem 0 .3rem;border-bottom:1px solid var(--bor);margin-bottom:.2rem;display:flex;justify-content:space-between;align-items:center}
+.mp-hd-dot{width:4px;height:4px;border-radius:50%;background:var(--gr);animation:pulse 2s ease infinite}
+
+/* pipeline screen */
+.pipe-col-wrap{display:flex;gap:.3rem;height:100%}
+.pipe-col{flex:1;display:flex;flex-direction:column;gap:.2rem}
+.pipe-col-hd{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu2);margin-bottom:.15rem;text-align:center}
+.pipe-card{background:var(--sur);border:1px solid var(--bor);border-radius:3px;padding:.28rem .3rem}
+.pipe-card.hi{border-color:rgba(141,157,79,.35);background:rgba(141,157,79,.06)}
+.pipe-name{font-size:.42rem;font-weight:500;color:var(--cr);margin-bottom:.1rem}
+.pipe-val{font-size:.4rem;color:var(--gr)}
+.pipe-ch{font-size:.36rem;color:var(--mu2)}
+
+/* inbox screen */
+.inbox-row{display:flex;align-items:center;gap:.35rem;padding:.28rem .3rem;border-radius:3px;background:var(--sur);border:1px solid var(--bor)}
+.inbox-row.unread{border-color:rgba(141,157,79,.3);background:rgba(141,157,79,.05)}
+.inbox-ch-icon{font-size:.55rem;width:16px;text-align:center;flex-shrink:0}
+.inbox-info{flex:1;min-width:0}
+.inbox-name{font-size:.42rem;font-weight:500;color:var(--cr);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inbox-msg{font-size:.38rem;color:var(--mu2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inbox-time{font-size:.36rem;color:var(--mu);flex-shrink:0}
+.inbox-dot{width:5px;height:5px;border-radius:50%;background:var(--gr);flex-shrink:0}
+
+/* site screen */
+.site-hero-img{height:80px;background:linear-gradient(135deg,#1e1c16 0%,#2a2620 50%,#1a1814 100%);border-radius:3px;display:flex;align-items:flex-end;padding:.4rem .45rem;margin-bottom:.25rem;position:relative;overflow:hidden}
+.site-hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.6) 100%)}
+.site-hero-txt{font-family:'Source Serif 4',serif;font-size:.52rem;font-weight:200;color:var(--cr);position:relative;z-index:1;line-height:1.2}
+.site-hero-txt em{color:var(--gr);font-style:italic}
+.site-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2rem;margin-bottom:.25rem}
+.site-img{height:44px;border-radius:2px;background:#1e1c16;border:1px solid var(--bor)}
+.site-img.g1{background:linear-gradient(135deg,#252218,#1a1814)}
+.site-img.g2{background:linear-gradient(135deg,#1e1c16,#232018)}
+.site-cta{background:var(--gr);border-radius:2px;padding:.3rem;text-align:center;font-size:.42rem;font-weight:500;color:var(--bg)}
+
+/* dashboard screen */
+.dash-score{display:flex;align-items:center;gap:.4rem;padding:.3rem .35rem;background:rgba(141,157,79,.08);border:1px solid rgba(141,157,79,.2);border-radius:3px;margin-bottom:.25rem}
+.dash-score-n{font-family:'Source Serif 4',serif;font-size:1.1rem;font-weight:200;color:var(--gr)}
+.dash-score-info{flex:1}
+.dash-score-lbl{font-size:.4rem;color:var(--mu2);margin-bottom:.08rem}
+.dash-score-bar{height:3px;background:var(--bor);border-radius:2px;overflow:hidden}
+.dash-score-fill{height:100%;background:var(--gr);border-radius:2px}
+.dash-insight{padding:.28rem .35rem;background:var(--sur);border:1px solid var(--bor);border-radius:3px;margin-bottom:.18rem}
+.dash-insight.warn{border-color:rgba(220,160,60,.3);background:rgba(220,160,60,.04)}
+.dash-i-tag{font-size:.36rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu2);margin-bottom:.1rem}
+.dash-i-tag.ok{color:var(--gr)}
+.dash-i-tag.warn{color:#dca03c}
+.dash-i-txt{font-size:.42rem;color:var(--cr);line-height:1.35}
+
+@media(max-width:768px){
+  .eco-grid{grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .eco-sec{padding:5rem 5% 6rem}
+}
+@media(max-width:480px){
+  .eco-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}
+  .mp-outer{width:136px}
+  .mp-screen{height:220px}
+}
+
+/* ── 6. RESULT ── */
 .res-wrap{height:220vh;position:relative;background:var(--bg2)}
 .res-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .res-inner{max-width:860px;width:88%;text-align:center}
@@ -404,7 +487,123 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
   </div>
 </div>
 
-<!-- ══ 5. RESULT ══ -->
+<!-- ══ 5. ECOSYSTEM ══ -->
+<section class="eco-sec">
+  <div class="eco-top">
+    <span class="eco-tag">Tudo em um só lugar</span>
+    <h2 class="eco-h">O único sistema que<br><em>sua empresa precisa.</em></h2>
+  </div>
+  <div class="eco-grid">
+
+    <!-- 1. Pipeline -->
+    <div class="eco-card">
+      <div class="mp-outer">
+        <div class="mp-notch"></div>
+        <div class="mp-inner">
+          <div class="mp-status"><span>9:41</span><span>▪▪▪ ◀ ■</span></div>
+          <div class="mp-screen">
+            <div class="pipe-col-wrap">
+              <div class="pipe-col">
+                <div class="pipe-col-hd">Novo</div>
+                <div class="pipe-card hi"><div class="pipe-name">Casa Nova</div><div class="pipe-val">R$42k</div></div>
+                <div class="pipe-card"><div class="pipe-name">Studio AR</div><div class="pipe-val">R$18k</div></div>
+                <div class="pipe-card"><div class="pipe-name">Loft 304</div><div class="pipe-val">R$28k</div></div>
+              </div>
+              <div class="pipe-col">
+                <div class="pipe-col-hd">Proposta</div>
+                <div class="pipe-card hi"><div class="pipe-name">Vila Nova</div><div class="pipe-val">R$67k</div></div>
+                <div class="pipe-card"><div class="pipe-name">Res. Berg</div><div class="pipe-val">R$95k</div></div>
+              </div>
+              <div class="pipe-col">
+                <div class="pipe-col-hd">Fechado</div>
+                <div class="pipe-card hi"><div class="pipe-name">Ap. 1401</div><div class="pipe-val">R$53k</div><div class="pipe-ch">✓ Assinado</div></div>
+                <div class="pipe-card hi"><div class="pipe-name">Cobert. MG</div><div class="pipe-val">R$120k</div><div class="pipe-ch">✓ Assinado</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="eco-label">Pipeline visual</span>
+    </div>
+
+    <!-- 2. Inbox unificado -->
+    <div class="eco-card">
+      <div class="mp-outer">
+        <div class="mp-notch"></div>
+        <div class="mp-inner">
+          <div class="mp-status"><span>9:41</span><span>▪▪▪ ◀ ■</span></div>
+          <div class="mp-screen">
+            <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Ana Lima</div><div class="inbox-msg">Gostaria de um orçamento...</div></div><span class="inbox-time">agora</span><div class="inbox-dot"></div></div>
+            <div class="inbox-row unread"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/instagram/E1306C" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Carlos M.</div><div class="inbox-msg">Vi o trabalho de vocês no feed</div></div><span class="inbox-time">2min</span><div class="inbox-dot"></div></div>
+            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Rafael S.</div><div class="inbox-msg">Preciso reformar o escritório</div></div><span class="inbox-time">8min</span></div>
+            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/facebook/1877F2" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Juliana R.</div><div class="inbox-msg">Quero ver o portfólio completo</div></div><span class="inbox-time">14min</span></div>
+            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/google/4285F4" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Pedro A.</div><div class="inbox-msg">Encontrei pelo Google...</div></div><span class="inbox-time">22min</span></div>
+            <div class="inbox-row"><span class="inbox-ch-icon"><img src="https://cdn.simpleicons.org/pinterest/E60023" width="13" height="13"></span><div class="inbox-info"><div class="inbox-name">Fernanda C.</div><div class="inbox-msg">Salvei o pin da cozinha</div></div><span class="inbox-time">1h</span></div>
+          </div>
+        </div>
+      </div>
+      <span class="eco-label">Inbox unificado</span>
+    </div>
+
+    <!-- 3. Seu site -->
+    <div class="eco-card">
+      <div class="mp-outer">
+        <div class="mp-notch"></div>
+        <div class="mp-inner">
+          <div class="mp-status"><span>9:41</span><span>▪▪▪ ◀ ■</span></div>
+          <div class="mp-screen" style="padding:0;gap:0">
+            <div class="site-hero-img" style="height:130px;border-radius:0;margin-bottom:0;background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=320&q=80');background-size:cover;background-position:center">
+              <div class="site-hero-txt" style="padding:.4rem .5rem">Ambientes que<br><em>contam histórias.</em></div>
+            </div>
+            <div style="padding:.35rem .45rem;display:flex;flex-direction:column;gap:.22rem">
+              <div class="site-grid">
+                <div class="site-img g1" style="background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div>
+                <div class="site-img g2" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div>
+              </div>
+              <div class="site-cta">Ver portfólio completo →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="eco-label">Seu site</span>
+    </div>
+
+    <!-- 4. Dashboard IA -->
+    <div class="eco-card">
+      <div class="mp-outer">
+        <div class="mp-notch"></div>
+        <div class="mp-inner">
+          <div class="mp-status"><span>9:41</span><span>▪▪▪ ◀ ■</span></div>
+          <div class="mp-screen">
+            <div class="dash-score">
+              <div class="dash-score-n">84</div>
+              <div class="dash-score-info">
+                <div class="dash-score-lbl">Score comercial este mês</div>
+                <div class="dash-score-bar"><div class="dash-score-fill" style="width:84%"></div></div>
+              </div>
+            </div>
+            <div class="dash-insight">
+              <div class="dash-i-tag ok">↑ Melhora</div>
+              <div class="dash-i-txt">Tempo de resposta caiu 68% essa semana.</div>
+            </div>
+            <div class="dash-insight warn">
+              <div class="dash-i-tag warn">⚠ Atenção</div>
+              <div class="dash-i-txt">4 leads sem follow-up há mais de 3 dias.</div>
+            </div>
+            <div class="dash-insight">
+              <div class="dash-i-tag ok">★ Destaque</div>
+              <div class="dash-i-txt">Reviews subiram para 4.9 — melhor mês.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="eco-label">Dashboard IA</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ 6. RESULT ══ -->
 <div class="res-wrap" id="resWrap">
   <div class="res-sticky">
     <div class="res-inner">
