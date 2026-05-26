@@ -74,10 +74,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content
 
 /* ── 4. BENEFITS — sticky phone ── */
 .ben-wrap{height:840vh;position:relative;background:var(--bg)}
-.ben-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+.ben-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;overflow:hidden}
 
 /* left: texto dos benefícios */
-.ben-left{padding:0 4% 0 8%;position:relative}
+/* height:100% garante que position:absolute filhos (ben-item, ben-dots) se
+   posicionem corretamente — sem isso o contêiner colapsa a 0 e os dots
+   aparecem no meio do texto */
+.ben-left{padding:0 4% 0 8%;position:relative;height:100%}
 .ben-item{position:absolute;top:50%;transform:translateY(-50%);opacity:0;width:90%;will-change:opacity,transform}
 .ben-item.first{opacity:1}
 .ben-eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);margin-bottom:.6rem;display:block}
@@ -238,7 +241,7 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
 @media(max-width:768px){
   .h-l1,.h-l2{white-space:normal;width:88%;text-align:center}
   /* benefits: texto acima, celular abaixo */
-  .ben-sticky{grid-template-columns:1fr;align-content:start;padding-top:2.75rem}
+  .ben-sticky{grid-template-columns:1fr;align-items:start;align-content:start;padding-top:5rem}
   .ben-left{padding:0 6%;position:relative;width:100%;height:220px;margin-bottom:.4rem;overflow:visible}
   .ben-item{position:absolute;top:0;left:6%;transform:none;width:88%}
   .ben-title{font-size:clamp(1.25rem,5.5vw,1.55rem)!important}
@@ -492,7 +495,7 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
   <div class="res-sticky">
     <div class="res-inner">
       <span class="r-tag" id="rTag">O resultado</span>
-      <h2 class="r-big" id="rBig">Uma operação comercial completa.<br><em>Do primeiro contato ao cliente que te indica.</em></h2>
+      <h2 class="r-big" id="rBig">Uma operação comercial completa.<br><em>Um único sistema que gerencia toda a sua empresa.</em></h2>
       <p class="r-sub" id="rSub">Cada etapa do processo organizada, automatizada e funcionando — sem depender de memória, de planilha ou de sorte.</p>
     </div>
   </div>
