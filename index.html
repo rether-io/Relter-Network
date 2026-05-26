@@ -73,7 +73,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content
 .pv.ac{color:var(--gr);font-style:italic}
 
 /* ── 4. BENEFITS — sticky phone ── */
-.ben-wrap{height:760vh;position:relative;background:var(--bg)}
+.ben-wrap{height:840vh;position:relative;background:var(--bg)}
 .ben-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
 
 /* left: texto dos benefícios */
@@ -237,13 +237,17 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
 /* ── MOBILE ── */
 @media(max-width:768px){
   .h-l1,.h-l2{white-space:normal;width:88%;text-align:center}
-  .ben-sticky{grid-template-columns:1fr;align-content:start;padding-top:3.5rem}
-  .ben-left{padding:0 6%;position:relative;width:100%;height:140px;margin-bottom:.75rem;overflow:hidden}
+  /* benefits: texto acima, celular abaixo */
+  .ben-sticky{grid-template-columns:1fr;align-content:start;padding-top:2.75rem}
+  .ben-left{padding:0 6%;position:relative;width:100%;height:220px;margin-bottom:.4rem;overflow:visible}
   .ben-item{position:absolute;top:0;left:6%;transform:none;width:88%}
-  .ben-dots{left:6%;bottom:auto;top:145px}
-  .ben-right{padding:0 4%}
-  .phone-outer{width:min(82vw,270px)}
-  .phone-screen{height:clamp(310px,54vw,380px)!important}
+  .ben-title{font-size:clamp(1.25rem,5.5vw,1.55rem)!important}
+  .ben-desc{font-size:.82rem!important;line-height:1.65!important}
+  .ben-dots{left:6%;bottom:auto;top:225px}
+  .ben-right{padding:0 4%;margin-top:2.4rem}
+  .phone-outer{width:min(78vw,260px)}
+  /* tela menor pra caber no viewport junto com o texto */
+  .phone-screen{height:clamp(260px,46vw,320px)!important}
 }
 </style>
 </head>
@@ -444,12 +448,32 @@ footer{background:#080705;padding:1.5rem 5%;display:flex;justify-content:space-b
                 </div>
               </div>
 
-              <!-- Tela 7: site -->
+              <!-- Tela 7: site (showroom — Marcenaria Silva style) -->
               <div class="ben-screen" style="overflow:hidden">
-                <div class="site-hero-img" style="height:150px;border-radius:0;margin-bottom:0;background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=320&q=80');background-size:cover;background-position:center"><div class="site-hero-txt" style="padding:.5rem .75rem">Ambientes que<br><em>contam histórias.</em></div></div>
-                <div style="padding:.4rem .7rem;display:flex;flex-direction:column;gap:.3rem">
-                  <div class="site-grid"><div class="site-img g1" style="background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div><div class="site-img g2" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=160&q=80');background-size:cover;background-position:center"></div></div>
-                  <div class="site-cta">Ver portfólio completo →</div>
+                <div style="background:#f4efe6;height:100%;position:relative;display:flex;flex-direction:column;overflow:hidden">
+                  <!-- mini nav -->
+                  <div style="padding:.32rem .6rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(107,58,31,.12);flex-shrink:0">
+                    <span style="font-size:.4rem;font-weight:700;color:#1a0f06;letter-spacing:.04em">🏠 Marcenaria Silva</span>
+                    <span style="font-size:.36rem;background:#6b3a1f;color:#fff;padding:.16rem .4rem;border-radius:10px;letter-spacing:.04em">Orçamento</span>
+                  </div>
+                  <!-- hero area -->
+                  <div style="flex:1;padding:.55rem .65rem .5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden">
+                    <!-- fotos flutuantes -->
+                    <div style="position:absolute;left:-14px;top:8px;width:78px;height:58px;border-radius:7px;background:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=160&q=80') center/cover;opacity:.75;transform:rotate(-6deg);box-shadow:0 4px 12px rgba(0,0,0,.18)"></div>
+                    <div style="position:absolute;right:-12px;bottom:14px;width:68px;height:50px;border-radius:7px;background:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=160&q=80') center/cover;opacity:.75;transform:rotate(5deg);box-shadow:0 4px 12px rgba(0,0,0,.18)"></div>
+                    <!-- eyebrow -->
+                    <span style="font-size:.37rem;color:#8b5e3c;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem;display:block;position:relative;z-index:1">✦ Móveis Planejados sob Medida</span>
+                    <!-- heading -->
+                    <div style="font-size:.88rem;font-weight:800;color:#1a0f06;line-height:1.1;position:relative;z-index:1">Cada ambiente,</div>
+                    <div style="font-size:.88rem;font-weight:800;color:#8b5e3c;line-height:1.1;margin-bottom:.4rem;position:relative;z-index:1">uma obra de arte</div>
+                    <!-- sub -->
+                    <p style="font-size:.42rem;color:#5a4535;line-height:1.55;margin-bottom:.5rem;position:relative;z-index:1;max-width:155px">Mais de 10 anos transformando espaços com móveis planejados exclusivos.</p>
+                    <!-- CTAs -->
+                    <div style="display:flex;gap:.28rem;position:relative;z-index:1">
+                      <span style="font-size:.4rem;background:#6b3a1f;color:#fff;padding:.26rem .52rem;border-radius:12px;white-space:nowrap">Ver Portfólio →</span>
+                      <span style="font-size:.4rem;border:1px solid #6b3a1f;color:#6b3a1f;padding:.26rem .52rem;border-radius:12px;white-space:nowrap">Solicitar Orçamento</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
