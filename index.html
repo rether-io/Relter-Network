@@ -570,28 +570,38 @@ gsap.fromTo('#pv2',{opacity:0,y:18},{opacity:1,y:0,scrollTrigger:{trigger:'#pivo
     }
   });
 
-  [0,1,2,3,4,5].forEach(i => {
-    const t = (i+1)/7;
-    // sai item atual
-    benTL.to(benItems[i],     {opacity:0, y:-22, duration:.05, ease:'power2.in'},   t-0.07);
-    // apaga phone para esconder o slide
-    benTL.to(benPhoneInner,   {opacity:0, duration:.03, ease:'none'},               t-0.04);
-    // troca a tela instantaneamente
-    benTL.to(benTrack,        {x:()=>-(i+1)*getBenW(), duration:.02, ease:'none', invalidateOnRefresh:true}, t-0.02);
+  // 6 pontos de transição espaçados de 0.20 em 0.20
+  // → cada item tem ~0.20 unidades de dwell visível antes da troca
+  // → último item (bn6) fica visível de ~1.18 até 1.40 = 0.22u ≈ 154vh de destaque
+  const TP = [0.10, 0.30, 0.50, 0.70, 0.90, 1.10]; // transition points
+
+  TP.forEach((t, i) => {
+    // sai texto atual
+    benTL.to(benItems[i],     {opacity:0, y:-22, duration:.04, ease:'power2.in'},   t);
+    // apaga phone para esconder slide
+    benTL.to(benPhoneInner,   {opacity:0, duration:.025, ease:'none'},               t+0.03);
+    // troca tela (instantâneo)
+    benTL.to(benTrack,        {x:()=>-(i+1)*getBenW(), duration:.01, ease:'none', invalidateOnRefresh:true}, t+0.05);
     // acende phone
-    benTL.to(benPhoneInner,   {opacity:1, duration:.05, ease:'power2.out'},          t+0.01);
-    // entra próximo item
-    benTL.to(benItems[i+1],   {opacity:1, y:0,  duration:.06, ease:'power2.out'},   t+0.03);
-    // dots: desativa atual, ativa próximo
-    benTL.to(benDots[i],      {width:'6px',  background:'var(--bor)', duration:.04}, t-0.05);
-    benTL.to(benDots[i+1],    {width:'20px', background:'var(--gr)',  duration:.04}, t+0.02);
+    benTL.to(benPhoneInner,   {opacity:1, duration:.04, ease:'power2.out'},          t+0.06);
+    // entra próximo texto
+    benTL.to(benItems[i+1],   {opacity:1, y:0,  duration:.05, ease:'power2.out'},   t+0.08);
+    // dots
+    benTL.to(benDots[i],      {width:'6px',  background:'var(--bor)', duration:.03}, t+0.02);
+    benTL.to(benDots[i+1],    {width:'20px', background:'var(--gr)',  duration:.03}, t+0.07);
   });
+
+  // Âncora que força timeline a durar 1.40 → garante dwell do último item
+  // (sem isso o timeline termina em ~0.95 e o item 6 mal aparece)
+  benTL.to('#benWrap', {opacity:1, duration:0.001}, 1.40);
 
   // corrige posição do track ao redimensionar
   ScrollTrigger.addEventListener('refreshInit', () => {
     const benST = ScrollTrigger.getAll().find(st => st.vars?.trigger === '#benWrap');
     if(!benST) return;
-    const idx = Math.min(Math.floor(benST.progress * 7), 6);
+    const prog = benST.progress * 1.40;
+    let idx = 0;
+    TP.forEach((t, i) => { if(prog >= t + 0.06) idx = i + 1; });
     gsap.set(benTrack, {x: -idx * getBenW()});
   });
 })();
