@@ -528,10 +528,10 @@ gsap.to('#sHint',{ opacity:0, y:'-10vh', ease:'none',
   scrollTrigger:{ trigger:'#heroWrap', start:'10% top', end:'25% top', scrub:true }
 });
 
-// ── IMPACT: 3 linhas — começa quase imediatamente ao entrar na seção
-// ip0 já inicia na tela antes de completar o lock; ip1/ip2 chegam em rápida sucessão
-const impStarts = [1, 11, 21];   // % do impactWrap onde começa cada linha
-const impEnds   = [7, 17, 27];   // % onde termina (janela de 6% = ~8vh por linha)
+// ── IMPACT: 3 linhas — entram rápido, depois derivam lentamente pra cima
+// ip0 começa em 1% (quase imediato), ip1/ip2 em rápida sucessão
+const impStarts = [1, 11, 21];
+const impEnds   = [7, 17, 27];
 ['#ip0','#ip1','#ip2'].forEach((sel, i) => {
   gsap.fromTo(sel,
     { opacity:0, y:16 },
@@ -540,15 +540,30 @@ const impEnds   = [7, 17, 27];   // % onde termina (janela de 6% = ~8vh por linh
     }
   );
 });
+// Após ip2 aparecer (27%), o bloco deriva levemente pra cima até sair —
+// garante que o scroll nunca parece "morto": o usuário vê movimento o tempo todo
 gsap.to('.impact-inner', {
-  opacity:0, y:-20,
-  scrollTrigger:{ trigger:'#impactWrap', start:'84% top', end:'95% top', scrub:true }
+  y: -44, ease:'none',
+  scrollTrigger:{ trigger:'#impactWrap', start:'28% top', end:'90% top', scrub:true }
+});
+gsap.to('.impact-inner', {
+  opacity: 0, ease:'power1.in',
+  scrollTrigger:{ trigger:'#impactWrap', start:'70% top', end:'88% top', scrub:true }
 });
 
-// ── PIVOT — mesma lógica: texto entra rápido logo que a seção trava
+// ── PIVOT — mesma estrutura: entra rápido, deriva e some
 gsap.fromTo('#pv0',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'1%  top',end:'9%  top',scrub:.5}});
 gsap.fromTo('#pv1',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'12% top',end:'20% top',scrub:.5}});
 gsap.fromTo('#pv2',{opacity:0,y:16},{opacity:1,y:0,scrollTrigger:{trigger:'#pivotWrap',start:'23% top',end:'31% top',scrub:.5}});
+// Deriva após pv2 (31%) — sinaliza continuação antes de sair
+gsap.to('.pivot-inner', {
+  y: -44, ease:'none',
+  scrollTrigger:{ trigger:'#pivotWrap', start:'32% top', end:'90% top', scrub:true }
+});
+gsap.to('.pivot-inner', {
+  opacity: 0, ease:'power1.in',
+  scrollTrigger:{ trigger:'#pivotWrap', start:'70% top', end:'88% top', scrub:true }
+});
 
 // ── BENEFITS — sticky phone + sliding screens
 (function(){
