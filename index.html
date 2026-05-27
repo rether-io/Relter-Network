@@ -540,24 +540,24 @@ gsap.fromTo('#ip0',
     scrollTrigger:{ trigger:'#impactWrap', start:'top bottom', end:'top top', scrub:1 }
   }
 );
-// ip1: entra logo que a seção trava (0–8% do scroll interno)
+// ip1: entra com mais peso — janela maior, y mais alto, scrub mais lento
 gsap.fromTo('#ip1',
-  { opacity:0, y:16 },
+  { opacity:0, y:38 },
   { opacity:1, y:0, ease:'power2.out',
-    scrollTrigger:{ trigger:'#impactWrap', start:'1% top', end:'9% top', scrub:.5 }
+    scrollTrigger:{ trigger:'#impactWrap', start:'2% top', end:'20% top', scrub:1.4 }
   }
 );
-// ip2: entra em seguida
+// ip2: mesma lógica, segue ip1 com espaço para respirar
 gsap.fromTo('#ip2',
-  { opacity:0, y:16 },
+  { opacity:0, y:38 },
   { opacity:1, y:0, ease:'power2.out',
-    scrollTrigger:{ trigger:'#impactWrap', start:'12% top', end:'20% top', scrub:.5 }
+    scrollTrigger:{ trigger:'#impactWrap', start:'23% top', end:'41% top', scrub:1.4 }
   }
 );
-// Bloco deriva suavemente para cima após ip2 — nenhum scroll "morto"
+// Bloco deriva suavemente para cima após ip2 (que termina em 41%)
 gsap.to('.impact-inner', {
   y:-44, ease:'none',
-  scrollTrigger:{ trigger:'#impactWrap', start:'28% top', end:'90% top', scrub:true }
+  scrollTrigger:{ trigger:'#impactWrap', start:'42% top', end:'90% top', scrub:true }
 });
 gsap.to('.impact-inner', {
   opacity:0, ease:'power1.in',
@@ -572,23 +572,23 @@ gsap.fromTo('#pv0',
     scrollTrigger:{ trigger:'#pivotWrap', start:'top bottom', end:'top top', scrub:1 }
   }
 );
-// pv1 e pv2: entram em rápida sucessão depois do lock
+// pv1 e pv2: entram com peso, cada uma recompensando o scroll
 gsap.fromTo('#pv1',
-  { opacity:0, y:16 },
+  { opacity:0, y:38 },
   { opacity:1, y:0, ease:'power2.out',
-    scrollTrigger:{ trigger:'#pivotWrap', start:'1% top', end:'9% top', scrub:.5 }
+    scrollTrigger:{ trigger:'#pivotWrap', start:'2% top', end:'20% top', scrub:1.4 }
   }
 );
 gsap.fromTo('#pv2',
-  { opacity:0, y:16 },
+  { opacity:0, y:38 },
   { opacity:1, y:0, ease:'power2.out',
-    scrollTrigger:{ trigger:'#pivotWrap', start:'12% top', end:'20% top', scrub:.5 }
+    scrollTrigger:{ trigger:'#pivotWrap', start:'23% top', end:'41% top', scrub:1.4 }
   }
 );
-// Bloco deriva após pv2 — sinaliza continuação, sem zona morta
+// Bloco deriva após pv2 (que termina em 41%) — sinaliza continuação
 gsap.to('.pivot-inner', {
   y:-44, ease:'none',
-  scrollTrigger:{ trigger:'#pivotWrap', start:'32% top', end:'90% top', scrub:true }
+  scrollTrigger:{ trigger:'#pivotWrap', start:'42% top', end:'90% top', scrub:true }
 });
 gsap.to('.pivot-inner', {
   opacity:0, ease:'power1.in',
